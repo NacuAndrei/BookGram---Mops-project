@@ -21,6 +21,8 @@ namespace Proiect1.DAL
         {
 
         }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Reader> Readers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
