@@ -23,10 +23,16 @@ namespace Proiect1.DAL
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Reader> Readers { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Book>()
+               .HasMany(r => r.Reviews)
+               .WithOne(b => b.Book);
 
         }
     }
