@@ -16,6 +16,7 @@ using Proiect1.DAL.Entities;
 using Proiect1.BLL.Managers;
 using Proiect1.BLL.Interfaces;
 using Proiect1.BLL.Helpers;
+using Proiect1.BLL.Repositories;
 
 namespace Proiect1
 {
@@ -48,6 +49,10 @@ namespace Proiect1
             services.AddTransient<IAuthManager, AuthManager>();
             services.AddTransient<ITokenHelper, TokenHelper>();
             services.AddTransient<InitialSeed>();
+
+
+            services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IBookManager, BookManager>();
 
             services.AddSwaggerGen(c =>
             {
