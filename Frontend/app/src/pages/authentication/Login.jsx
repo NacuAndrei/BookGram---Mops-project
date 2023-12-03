@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { ReactComponent as Avatar } from "./avatar.svg";
 import { ReactComponent as Reading } from "./reading.svg";
+import { useNavigate } from "react-router-dom";
 
 export const Login = (props) => {
+  const history = useNavigate();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
@@ -42,7 +44,11 @@ export const Login = (props) => {
               name="password"
             />
 
-            <button id="recover-button" className="link-btn-recover">
+            <button
+              id="recover-button"
+              className="link-btn-recover"
+              onClick={() => history("/Authentication/RecoverPassword")}
+            >
               Forgot password?
             </button>
 
