@@ -55,6 +55,10 @@ namespace Proiect1
 
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookManager, BookManager>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddTransient<IReviewManager, ReviewManager>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserManager, UserManager>();
 
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IPostManager, PostManager>();
