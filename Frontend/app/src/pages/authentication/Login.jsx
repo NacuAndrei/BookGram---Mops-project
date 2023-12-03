@@ -57,7 +57,11 @@ export const Login = (props) => {
             </button>
           </form>
 
-          <button id="register-button" className="link-btn-login">
+          <button
+            id="register-button"
+            className="link-btn-login"
+            onClick={() => history("/Authentication/Register")}
+          >
             Don't have an account? Register here.
           </button>
         </div>
