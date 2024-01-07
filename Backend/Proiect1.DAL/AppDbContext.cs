@@ -25,6 +25,7 @@ namespace Proiect1.DAL
         public DbSet<Reader> Readers { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +34,10 @@ namespace Proiect1.DAL
             modelBuilder.Entity<Book>()
                .HasMany(r => r.Reviews)
                .WithOne(b => b.Book);
+
+            modelBuilder.Entity<User>()
+               .HasMany(u => u.Posts)
+               .WithOne(p => p.User);
 
         }
     }

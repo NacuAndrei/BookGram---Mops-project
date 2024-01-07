@@ -12,5 +12,6 @@ namespace Proiect1.DAL.Entities
     {
         public string RefreshToken { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

@@ -56,6 +56,9 @@ namespace Proiect1
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookManager, BookManager>();
 
+            services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IPostManager, PostManager>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proiect1", Version = "v1" });
