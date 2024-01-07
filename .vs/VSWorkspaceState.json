@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Backend",
+    "\\Backend\\Proiect1.BLL",
+    "\\Backend\\Proiect1.BLL\\DTOs",
+    "\\Backend\\Proiect1.BLL\\Interfaces",
+    "\\Backend\\Proiect1.DAL",
+    "\\Frontend\\app",
+    "\\Frontend\\app\\src",
+    "\\Frontend\\app\\src\\pages",
+    "\\Frontend\\app\\src\\pages\\authentication"
+  ],
+  "SelectedNode": "\\Backend\\Proiect1.DAL\\Migrations\\20231130151344_ReviewBook.Designer.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -50,6 +50,8 @@ namespace Proiect1
             services.AddTransient<ITokenHelper, TokenHelper>();
             services.AddTransient<InitialSeed>();
 
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserManager, UserManager>();
 
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookManager, BookManager>();
@@ -128,6 +130,7 @@ namespace Proiect1
             });
 
             initialSeed.CreateRoles();
+            initialSeed.CreateUsers();
         }
     }
 }
