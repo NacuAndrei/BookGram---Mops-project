@@ -6,66 +6,65 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Proiect1.BLL.Managers
+namespace Proiect1.BLL.Managers;
+
+public class PostManager : IPostManager
 {
-    public class PostManager : IPostManager
+    private readonly IPostRepository postRepository;
+    private readonly IUserRepository userRepository;
+
+    public PostManager(IPostRepository postRepository, IUserRepository userRepository, AppDbContext db)
     {
-        private readonly IPostRepository postRepository;
-        private readonly IUserRepository userRepository;
+        this.postRepository = postRepository;
+        this.userRepository = userRepository;
+    }
 
-        public PostManager(IPostRepository postRepository, IUserRepository userRepository, AppDbContext db)
+    public List<Post> GetAllUserPosts(int id)
+    {
+        return postRepository.GetAllUserPostsIQueryable(id).ToList();
+    }
+
+    public List<Post> GetAllPosts()
+    {
+        return postRepository.GetAllPostsIQueryable().ToList();
+    }
+
+    public Post GetPostById(int id)
+    {
+        return postRepository.GetPostById(id);
+    }
+
+    public void CreatePost(PostModel model)
+    {
+        var newPost = new Post
         {
-            this.postRepository = postRepository;
-            this.userRepository = userRepository;
-        }
+            UserId = model.UserId,
+            Description = model.Description,
+            ImagePath = model.ImagePath,
+        };
 
-        public List<Post> GetAllUserPosts(int id)
-        {
-            return postRepository.GetAllUserPostsIQueryable(id).ToList();
-        }
+        string userName = userRepository.GetUserNameById(newPost.UserId);
 
-        public List<Post> GetAllPosts()
-        {
-            return postRepository.GetAllPostsIQueryable().ToList();
-        }
+        newPost.UserName = userName;
+        newPost.PublishDate = DateTime.Now;
 
-        public Post GetPostById(int id)
-        {
-            return postRepository.GetPostById(id);
-        }
+        postRepository.CreatePost(newPost);
+    }
 
-        public void CreatePost(PostModel model)
-        {
-            var newPost = new Post
-            {
-                UserId = model.UserId,
-                Description = model.Description,
-                ImagePath = model.ImagePath,
-            };
+    public void UpdatePost(PostModel model)
+    {
+        var post = GetPostById(model.Id);
+        if (model.Description != "")
+            post.Description = model.Description;
+        if (model.ImagePath != "")
+            post.ImagePath = model.ImagePath;
 
-            string userName = userRepository.GetUserNameById(newPost.UserId);
+        postRepository.UpdatePost(post);
+    }
 
-            newPost.UserName = userName;
-            newPost.PublishDate = DateTime.Now;
-
-            postRepository.CreatePost(newPost);
-        }
-
-        public void UpdatePost(PostModel model)
-        {
-            var post = GetPostById(model.Id);
-            if (model.Description != "")
-                post.Description = model.Description;
-            if (model.ImagePath != "")
-                post.ImagePath = model.ImagePath;
-
-            postRepository.UpdatePost(post);
-        }
-
-        public void DeletePost(int id)
-        {
-            var post = GetPostById(id);
-            postRepository.DeletePost(post);
-        }
+    public void DeletePost(int id)
+    {
+        var post = GetPostById(id);
+        postRepository.DeletePost(post);
     }
 }

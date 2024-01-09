@@ -29,6 +29,5 @@ namespace Proiect1.Controllers
             manager.DeleteUser(id);
             return Ok();
         }
-
     }
 }
