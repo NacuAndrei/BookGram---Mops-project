@@ -14,5 +14,6 @@ namespace Proiect1.DAL.Entities
         public virtual ICollection<UserRole> UserRoles { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<UserChallenge> UserChallenges { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

@@ -41,6 +41,12 @@ namespace Proiect1.DAL
                .HasMany(u => u.Posts)
                .WithOne(p => p.User);
 
+            //User
+            modelBuilder.Entity<User>()
+                .HasMany(r => r.Reviews)
+                .WithOne(u => u.User);
+        
+
             modelBuilder.Entity<UserChallenge>().HasKey(uc => new { uc.UserId, uc.ChallengeId });
 
             modelBuilder.Entity<UserChallenge>()

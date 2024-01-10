@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Proiect1.DAL.Entities
 {
@@ -19,7 +16,7 @@ namespace Proiect1.DAL.Entities
         public string Title { get; set; }
         public string Comment { get; set; }
         public DateTime PublishDate { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
 
     }
-
 }
