@@ -11,5 +11,6 @@ namespace Proiect1.BLL.Interfaces
         string GetUserNameById(int id);
         void DeleteUser(int id);
         User GetUserById(int id);
+        Task SendEmailTemplate(EmailReceiverDTO emailDto);
     }
 }

@@ -3,6 +3,7 @@ using Proiect1.BLL.Interfaces;
 using Proiect1.DAL.Entities;
 using Proiect1.BLL.Models;
 using System.Threading.Tasks;
+using Proiect1.BLL.DTOs;
 
 namespace Proiect1.BLL.Managers
 {
@@ -11,14 +12,17 @@ namespace Proiect1.BLL.Managers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ITokenHelper _tokenHelper;
+        private readonly IUserManager _manager;
 
         public AuthManager(UserManager<User> userManager,
             SignInManager<User> signInManager,
+            IUserManager manager,
             ITokenHelper tokenHelper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenHelper = tokenHelper;
+            this._manager = manager;
         }
 
         public async Task<LoginResult> Login(LoginModel loginModel)
@@ -52,7 +56,7 @@ namespace Proiect1.BLL.Managers
                     {
                         Success = false
                     };
-            }    
+            }
         }
 
         public async Task<bool> Register(RegisterModel registerModel)
@@ -60,7 +64,7 @@ namespace Proiect1.BLL.Managers
             var user = new User
             {
                 Email = registerModel.Email,
-                UserName = registerModel.Email
+                UserName = registerModel.Name,
             };
 
             var result = await _userManager.CreateAsync(user, registerModel.Password);
@@ -68,6 +72,12 @@ namespace Proiect1.BLL.Managers
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, registerModel.Role);
+                var receiver = new EmailReceiverDTO
+                {
+                    Email = registerModel.Email,
+                    Name = registerModel.Name
+                };
+                await _manager.SendEmailTemplate(receiver);
                 return true;
             }
             else
@@ -89,6 +99,6 @@ namespace Proiect1.BLL.Managers
             var newJwtToken = await _tokenHelper.CreateAccessToken(user);
 
             return newJwtToken;
-        } 
+        }
     }
 }
