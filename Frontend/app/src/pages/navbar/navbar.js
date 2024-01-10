@@ -6,14 +6,14 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-  // const history = useNavigate();
-  // const [token, setToken] = useState(() => {
-  //   return jwtDecode(getToken("token"))
-  // });
-  // const handleLogOut = () => {
-  //   deleteToken();
-  //   history("/");
-  // }
+  const history = useNavigate();
+  const [token, setToken] = useState(() => {
+    return jwtDecode(getToken("token"))
+  });
+  const handleLogOut = () => {
+    deleteToken();
+    history("/");
+  }
   function CustomLink({ to, children, ...props }) {
     const resolvedPath = useResolvedPath(to);
     const isActive = useMatch({ path: resolvedPath.pathname, end: true });
@@ -31,7 +31,7 @@ export default function Navbar() {
     <div style={{ backgroundColor: "#f1f4f9", color: "#f1f4f9" }}>
       <nav className={navStyles.navbar}>
         <div className={navStyles.title}>
-          <button id="logout-button" className={navStyles.buttonn}>Logout</button>
+          <button id="logout-button" className={navStyles.buttonn} onClick={handleLogOut}>Logout</button>
         </div>
         <div className={navStyles.navbarlinks}>
           <ul>
@@ -46,9 +46,9 @@ export default function Navbar() {
             <li>
               <CustomLink to="/Profile" id="profile-tab">Profile</CustomLink>
             </li>
-            {/* {token?.role=='Admin' ? <li>
+            {token?.role=='Admin' ? <li>
               <CustomLink to="/AdminPage" id="admin-page-tab">AdminPage</CustomLink>
-            </li> : null}  */}
+            </li> : null} 
           </ul>
         </div>
       </nav>
