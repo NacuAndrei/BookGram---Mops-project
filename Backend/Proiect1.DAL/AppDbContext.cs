@@ -26,6 +26,8 @@ namespace Proiect1.DAL
         public DbSet<Book> Books { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Challenge> Challenges { get; set; }
+        public DbSet<UserChallenge> UserChallenge { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +40,18 @@ namespace Proiect1.DAL
             modelBuilder.Entity<User>()
                .HasMany(u => u.Posts)
                .WithOne(p => p.User);
+
+            modelBuilder.Entity<UserChallenge>().HasKey(uc => new { uc.UserId, uc.ChallengeId });
+
+            modelBuilder.Entity<UserChallenge>()
+                .HasOne(uc => uc.User)
+                .WithMany(u => u.UserChallenges)
+                .HasForeignKey(uc => uc.UserId);
+
+            modelBuilder.Entity<UserChallenge>()
+                .HasOne(uc => uc.Challenge)
+                .WithMany(c => c.UserChallenges)
+                .HasForeignKey(uc => uc.ChallengeId);
 
         }
     }
