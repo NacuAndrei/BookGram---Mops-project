@@ -39,7 +39,7 @@ namespace Proiect1
                 options.AddPolicy(name: SpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("localhost:4200", "http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                                      builder.WithOrigins("localhost:3000", "http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
                                   });
             });
 
@@ -58,6 +58,12 @@ namespace Proiect1
 
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IPostManager, PostManager>();
+
+            services.AddTransient<IChallRepository, ChallRepository>();
+            services.AddTransient<IChallManager, ChallManager>();
+
+            services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddTransient<IReviewManager, ReviewManager>();
 
             services.AddSwaggerGen(c =>
             {

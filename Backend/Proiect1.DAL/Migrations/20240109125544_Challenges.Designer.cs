@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proiect1.DAL;
 
 namespace Proiect1.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240109125544_Challenges")]
+    partial class Challenges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,15 +126,10 @@ namespace Proiect1.DAL.Migrations
                     b.Property<string>("PublishDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReviewId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReviewId");
 
                     b.ToTable("Books");
                 });
@@ -416,13 +413,6 @@ namespace Proiect1.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Proiect1.DAL.Entities.Book", b =>
-                {
-                    b.HasOne("Proiect1.DAL.Entities.Review", null)
-                        .WithMany("Books")
-                        .HasForeignKey("ReviewId");
-                });
-
             modelBuilder.Entity("Proiect1.DAL.Entities.Post", b =>
                 {
                     b.HasOne("Proiect1.DAL.Entities.User", "User")
@@ -454,7 +444,7 @@ namespace Proiect1.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Proiect1.DAL.Entities.User", "User")
-                        .WithMany("Reviews")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -520,11 +510,6 @@ namespace Proiect1.DAL.Migrations
                     b.Navigation("UserChallenges");
                 });
 
-            modelBuilder.Entity("Proiect1.DAL.Entities.Review", b =>
-                {
-                    b.Navigation("Books");
-                });
-
             modelBuilder.Entity("Proiect1.DAL.Entities.Role", b =>
                 {
                     b.Navigation("UserRoles");
@@ -533,8 +518,6 @@ namespace Proiect1.DAL.Migrations
             modelBuilder.Entity("Proiect1.DAL.Entities.User", b =>
                 {
                     b.Navigation("Posts");
-
-                    b.Navigation("Reviews");
 
                     b.Navigation("UserChallenges");
 

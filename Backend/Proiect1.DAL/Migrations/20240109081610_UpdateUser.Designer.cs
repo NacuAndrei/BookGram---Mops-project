@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proiect1.DAL;
 
 namespace Proiect1.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240109081610_UpdateUser")]
+    partial class UpdateUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,38 +126,12 @@ namespace Proiect1.DAL.Migrations
                     b.Property<string>("PublishDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReviewId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReviewId");
 
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("Proiect1.DAL.Entities.Challenge", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateOfCreation")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Challenges");
                 });
 
             modelBuilder.Entity("Proiect1.DAL.Entities.Post", b =>
@@ -340,21 +316,6 @@ namespace Proiect1.DAL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Proiect1.DAL.Entities.UserChallenge", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ChallengeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "ChallengeId");
-
-                    b.HasIndex("ChallengeId");
-
-                    b.ToTable("UserChallenge");
-                });
-
             modelBuilder.Entity("Proiect1.DAL.Entities.UserRole", b =>
                 {
                     b.Property<int>("UserId")
@@ -416,13 +377,6 @@ namespace Proiect1.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Proiect1.DAL.Entities.Book", b =>
-                {
-                    b.HasOne("Proiect1.DAL.Entities.Review", null)
-                        .WithMany("Books")
-                        .HasForeignKey("ReviewId");
-                });
-
             modelBuilder.Entity("Proiect1.DAL.Entities.Post", b =>
                 {
                     b.HasOne("Proiect1.DAL.Entities.User", "User")
@@ -454,31 +408,12 @@ namespace Proiect1.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Proiect1.DAL.Entities.User", "User")
-                        .WithMany("Reviews")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Proiect1.DAL.Entities.UserChallenge", b =>
-                {
-                    b.HasOne("Proiect1.DAL.Entities.Challenge", "Challenge")
-                        .WithMany("UserChallenges")
-                        .HasForeignKey("ChallengeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Proiect1.DAL.Entities.User", "User")
-                        .WithMany("UserChallenges")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Challenge");
 
                     b.Navigation("User");
                 });
@@ -515,16 +450,6 @@ namespace Proiect1.DAL.Migrations
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("Proiect1.DAL.Entities.Challenge", b =>
-                {
-                    b.Navigation("UserChallenges");
-                });
-
-            modelBuilder.Entity("Proiect1.DAL.Entities.Review", b =>
-                {
-                    b.Navigation("Books");
-                });
-
             modelBuilder.Entity("Proiect1.DAL.Entities.Role", b =>
                 {
                     b.Navigation("UserRoles");
@@ -533,10 +458,6 @@ namespace Proiect1.DAL.Migrations
             modelBuilder.Entity("Proiect1.DAL.Entities.User", b =>
                 {
                     b.Navigation("Posts");
-
-                    b.Navigation("Reviews");
-
-                    b.Navigation("UserChallenges");
 
                     b.Navigation("UserRoles");
                 });

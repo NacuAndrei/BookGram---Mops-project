@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Proiect1.BLL.DTOs;
 using Proiect1.BLL.Interfaces;
 using System.Threading.Tasks;
 
@@ -15,7 +16,6 @@ namespace Proiect1.Controllers
             this.manager = userManager;
         }
 
-        //get all users
         [HttpGet("Get_All_Users")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -28,6 +28,13 @@ namespace Proiect1.Controllers
         {
             manager.DeleteUser(id);
             return Ok();
+        }
+
+        [HttpPost("send-email")]
+        public async Task<IActionResult> SendEmail([FromBody] EmailReceiverDTO emailDto)
+        {
+            await manager.SendEmailTemplate(emailDto);
+            return Ok("Email Sent!");
         }
     }
 }
