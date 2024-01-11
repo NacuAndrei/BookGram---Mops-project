@@ -60,5 +60,21 @@ namespace Proiect1.BLL.Repositories
             db.SaveChanges();
         }
 
+        public IQueryable<Post> GetPostsOfFriendsIQueryable(int id)
+        {
+            var friendships = db.Friendships.Where(x => x.UserId == id).ToList();
+
+            List<int> friendsids = new List<int>();
+
+            foreach (var friendship in friendships)
+            {
+                friendsids.Add(friendship.FriendId);
+            }
+
+            var posts = db.Posts.Where(x => friendsids.Contains(x.UserId)).OrderByDescending(x => x.PublishDate);
+
+            return posts;
+        }
+
     }
 }

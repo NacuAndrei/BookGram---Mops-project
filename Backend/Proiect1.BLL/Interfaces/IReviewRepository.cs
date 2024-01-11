@@ -13,5 +13,6 @@ namespace Proiect1.BLL.Interfaces
         void UpdateReview(Review review);
         void DeleteReview(Review review);
         List<Review> GetReviewsToList();
+        IQueryable<Review> GetReviewsOfFriendsIQueryable(int id);
     }
 }

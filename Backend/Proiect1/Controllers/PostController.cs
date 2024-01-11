@@ -54,5 +54,13 @@ namespace Proiect1.Controllers
             return Ok();
         }
 
+        [HttpGet("Select-Posts-of-Friends(of-User{id})")]
+        public async Task<IActionResult> GetPostsofFriends([FromRoute] int id)
+        {
+            var posts = manager.GetPostsofFriends(id);
+
+            return Ok(posts);
+        }
+
     }
 }

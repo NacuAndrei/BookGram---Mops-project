@@ -11,5 +11,6 @@ namespace Proiect1.BLL.Interfaces
         void UpdatePost(Post post);
         void DeletePost(Post post);
         IQueryable<Post> GetAllPostsIQueryable();
+        IQueryable<Post> GetPostsOfFriendsIQueryable(int id);
     }
 }

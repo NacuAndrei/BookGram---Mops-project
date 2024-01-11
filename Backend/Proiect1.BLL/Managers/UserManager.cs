@@ -36,6 +36,15 @@ public class UserManager : IUserManager
     public void DeleteUser(int id)
     {
         var user = GetUserById(id);
+        var friendships = db.Friendships.ToList();
+        foreach (var fs in friendships)
+        {
+            if (fs.UserId == id || fs.FriendId == id)
+            {
+                db.Friendships.Remove(fs);
+            }
+        }
+        db.SaveChanges();
         userRepository.DeleteUser(user);
     }
 

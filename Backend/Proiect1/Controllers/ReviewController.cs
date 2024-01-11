@@ -78,5 +78,13 @@ namespace Proiect1.Controllers
             manager.DeleteReview(id);
             return Ok();
         }
+
+        [HttpGet("Get_Reviews_of_User's{id}_Friends")]
+        public async Task<IActionResult> GetReviewsofFriends([FromRoute] int id)
+        {
+            var reviews = manager.GetReviewsofFriends(id);
+
+            return Ok(reviews);
+        }
     }
 }

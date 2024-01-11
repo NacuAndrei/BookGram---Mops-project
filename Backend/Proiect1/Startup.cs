@@ -65,6 +65,9 @@ namespace Proiect1
             services.AddTransient<IReviewRepository, ReviewRepository>();
             services.AddTransient<IReviewManager, ReviewManager>();
 
+            services.AddTransient<IFriendshipRepository, FriendshipRepository>();
+            services.AddTransient<IFriendshipManager, FriendshipManager>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proiect1", Version = "v1" });

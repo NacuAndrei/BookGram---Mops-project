@@ -28,6 +28,7 @@ namespace Proiect1.DAL
         public DbSet<Post> Posts { get; set; }
         public DbSet<Challenge> Challenges { get; set; }
         public DbSet<UserChallenge> UserChallenge { get; set; }
+        public DbSet<Friendship> Friendships { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -10,4 +10,5 @@ public class User : IdentityUser<int>
       public virtual ICollection<Post> Posts { get; set; }
       public virtual ICollection<UserChallenge> UserChallenges { get; set; }
       public virtual ICollection<Review> Reviews { get; set; }
+    public virtual ICollection<Friendship> Friendships { get; set; }
 }

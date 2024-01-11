@@ -66,4 +66,9 @@ public class PostManager : IPostManager
         var post = GetPostById(id);
         postRepository.DeletePost(post);
     }
+
+    public List<Post> GetPostsofFriends(int id)
+    {
+        return postRepository.GetPostsOfFriendsIQueryable(id).ToList();
+    }
 }

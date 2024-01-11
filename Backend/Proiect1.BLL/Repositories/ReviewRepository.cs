@@ -65,5 +65,18 @@ namespace Proiect1.BLL.Repositories
             db.SaveChanges();
         }
 
+        public IQueryable<Review> GetReviewsOfFriendsIQueryable(int id)
+        {
+
+            var friendships = db.Friendships.Where(x => x.UserId == id).ToList();
+
+            var friendsIds = friendships.Select(x => x.FriendId);
+
+            var reviews = db.Reviews
+                .Where(x => friendsIds.Contains(x.UserId));
+
+            return reviews;
+        }
+
     }
 }

@@ -68,4 +68,9 @@ public class ReviewManager : IReviewManager
         var review = GetReviewById(id);
         reviewRepository.DeleteReview(review);
     }
+
+    public List<Review> GetReviewsofFriends(int id)
+    {
+        return reviewRepository.GetReviewsOfFriendsIQueryable(id).ToList();
+    }
 }

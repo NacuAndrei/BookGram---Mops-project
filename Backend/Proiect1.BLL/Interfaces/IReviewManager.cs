@@ -13,5 +13,6 @@ namespace Proiect1.BLL.Interfaces
         void UpdateReview(ReviewModel model);
         void DeleteReview(int id);
         List<Review> GetAllReviews();
+        List<Review> GetReviewsofFriends(int id);
     }
 }
