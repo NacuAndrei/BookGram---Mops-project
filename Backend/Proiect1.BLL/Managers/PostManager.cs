@@ -1,6 +1,5 @@
 ﻿using Proiect1.BLL.Interfaces;
 using Proiect1.BLL.Models;
-using Proiect1.DAL;
 using Proiect1.DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ public class PostManager : IPostManager
     private readonly IPostRepository postRepository;
     private readonly IUserRepository userRepository;
 
-    public PostManager(IPostRepository postRepository, IUserRepository userRepository, AppDbContext db)
+    public PostManager(IPostRepository postRepository, IUserRepository userRepository)
     {
         this.postRepository = postRepository;
         this.userRepository = userRepository;

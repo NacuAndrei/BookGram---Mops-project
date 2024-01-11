@@ -15,7 +15,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "SENDGRID_API_KEY": "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",
+        "SENDGRID_API_KEY": "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",
         "SENDGRID_EMAIL": "miruna.atudorei@s.unibuc.ro",
         "SENDGRID_NAME": "BookGram"
       }
