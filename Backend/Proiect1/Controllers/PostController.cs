@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proiect1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Posts")]
     [ApiController]
     public class PostController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace Proiect1.Controllers
             this.manager = postManager;
         }
 
-        [HttpGet("Select_all_user{id}_posts")]
+        [HttpGet("GetAllUser{id}Posts")]
         public async Task<IActionResult> GetUserPosts([FromRoute] int id)
         {
             var posts = manager.GetAllUserPosts(id);
@@ -25,7 +25,7 @@ namespace Proiect1.Controllers
             return Ok(posts);
         }
 
-        [HttpGet("all")]
+        [HttpGet("GetAllPosts")]
         public async Task<IActionResult> GetAll()
         {
             var posts = manager.GetAllPosts();
@@ -33,21 +33,21 @@ namespace Proiect1.Controllers
         }
 
 
-        [HttpPost("Create_Post")]
+        [HttpPost("CreatePost")]
         public async Task<IActionResult> CreatePost([FromBody] PostModel postModel)
         {
             manager.CreatePost(postModel);
             return Ok();
         }
 
-        [HttpPut("Update_post_By_Id")]
+        [HttpPut("UpdatePostById")]
         public async Task<IActionResult> UpdatePost([FromBody] PostModel postModel)
         {
             manager.UpdatePost(postModel);
             return Ok();
         }
 
-        [HttpDelete("Delete_Post_By_{id}")]
+        [HttpDelete("DeletePostBy{id}")]
         public async Task<IActionResult> DeletePost([FromRoute] int id)
         {
             manager.DeletePost(id);

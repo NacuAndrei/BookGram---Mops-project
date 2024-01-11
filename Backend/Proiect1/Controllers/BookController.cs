@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Proiect1.Controllers
 {
-    [Route("api/books")]
+    [Route("api/Books")]
     [ApiController]
     public class BookController : ControllerBase
     {

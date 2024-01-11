@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Proiect1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Challenges")]
     [ApiController]
     public class ChallengeController : ControllerBase
     {
@@ -16,35 +16,35 @@ namespace Proiect1.Controllers
             this.manager = challManager;
         }
 
-        [HttpGet("Select_all_chall")]
+        [HttpGet("GetAllChallenges")]
         public async Task<IActionResult> GetChallenges()
         {
             var challenges = manager.GetChallenges();
             return Ok(challenges);
         }
 
-        [HttpGet("Select_newest_chall")]
+        [HttpGet("GetNewestChallenge")]
         public async Task<IActionResult> GetNewestChallenge()
         {
             var newestChall = manager.GetNewestChallenge();
             return Ok(newestChall);
         }
 
-        [HttpPost("Create_Challenge")]
+        [HttpPost("CreateChallenge")]
         public async Task<IActionResult> CreateChallenge([FromBody] ChallengeModel challengeModel)
         {
             manager.CreateChallenge(challengeModel);
             return Ok();
         }
 
-        [HttpPut("Update_Challenge_By_Id")]
+        [HttpPut("UpdateChallengeById")]
         public async Task<IActionResult> UpdateChallenge([FromBody] ChallengeModel challengeModel)
         {
             manager.UpdateChallenge(challengeModel);
             return Ok();
         }
 
-        [HttpDelete("Delete_Challenge_By_{id}")]
+        [HttpDelete("DeleteChallengeBy{id}")]
         public async Task<IActionResult> DeleteChallenge([FromRoute] int id)
         {
             manager.DeleteChallenge(id);
