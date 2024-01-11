@@ -1,19 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Proiect1.DAL.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Proiect1.DAL.Entities
+namespace Proiect1.DAL.Entities;
+
+public class User : IdentityUser<int>
 {
-    public class User : IdentityUser<int>
-    {
-        public string RefreshToken { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
-        public virtual ICollection<Post> Posts { get; set; }
-        public virtual ICollection<UserChallenge> UserChallenges { get; set; }
-        public virtual ICollection<Review> Reviews { get; set; }
-    }
+      public string RefreshToken { get; set; }
+      public virtual ICollection<UserRole> UserRoles { get; set; }
+      public virtual ICollection<Post> Posts { get; set; }
+      public virtual ICollection<UserChallenge> UserChallenges { get; set; }
+      public virtual ICollection<Review> Reviews { get; set; }
 }
