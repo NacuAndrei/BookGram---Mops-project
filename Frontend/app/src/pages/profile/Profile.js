@@ -20,7 +20,7 @@ export default function Profile() {
   const [token, setToken] = useState(() => {
     return jwtDecode(getToken("token"))
   });
-  // const [friendshipsList, setFriendshipsList] = useState([]);
+  const [friendshipsList, setFriendshipsList] = useState([]);
   const [postsList, setPostsList] = useState([]);
   const [reviewsList, setReviewsList] = useState([]);
   const history = useNavigate();
@@ -48,16 +48,16 @@ export default function Profile() {
   }
 
 
-  // // prietenii userului
-  // const getFriendships = () => {
-  //   _get("https://localhost:44335/api/Friendship/Get_All_Friendships").then(
-  //     (friendships) => {
-  //       console.log("date: " , friendships.data);
-  //       setFriendshipsList(friendships.data);
-  //       console.log("Lista: ", friendshipsList);
-  //     }
-  //   );
-  // };
+  // prietenii userului
+  const getFriendships = () => {
+    _get("https://localhost:44335/api/Friendship/Get_All_Friendships").then(
+      (friendships) => {
+        console.log("date: " , friendships.data);
+        setFriendshipsList(friendships.data);
+        console.log("Lista: ", friendshipsList);
+      }
+    );
+  };
 
   // postarile unui user 
   const getPosts = async () => {
@@ -84,7 +84,7 @@ export default function Profile() {
 
   useEffect(() => {
     getPosts();
-    // getFriendships();
+    getFriendships();
     getReviews();
   }, [] );
 
@@ -140,11 +140,11 @@ export default function Profile() {
                         <Cancel></Cancel>
                       </div>
                     </div>
-                    {/* <div className={profileStyles.friendslist}>
+                    <div className={profileStyles.friendslist}>
                       {friendshipsList.map((val, key) => {
                         return <li>{val.friendName}</li>;
                       })}
-                    </div> */}
+                    </div>
                   </Modal>
                 </div>
               </div>
