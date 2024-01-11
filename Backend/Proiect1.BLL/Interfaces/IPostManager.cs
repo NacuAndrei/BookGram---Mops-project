@@ -12,5 +12,6 @@ namespace Proiect1.BLL.Interfaces
         void UpdatePost(PostModel model);
         public void DeletePost(int id);
         List<Post> GetAllPosts();
+        List<Post> GetPostsofFriends(int id);
     }
 }
