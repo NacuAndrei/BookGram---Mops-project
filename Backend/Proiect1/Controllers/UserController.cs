@@ -16,14 +16,14 @@ namespace Proiect1.Controllers
             this.manager = userManager;
         }
 
-        [HttpGet("Get_All_Users")]
+        [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = manager.GetUsers();
             return Ok(users);
         }
 
-        [HttpDelete("Delete_User_By_{id}")]
+        [HttpDelete("DeleteUserBy{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
             manager.DeleteUser(id);

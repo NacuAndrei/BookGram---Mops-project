@@ -17,7 +17,7 @@ const AdminPage = () => {
         
         e.preventDefault();
 
-        _post("https://localhost:44335/api/Challenge/Create_Challenge", {
+        _post("https://localhost:44335/api/Challenge/CreateChallenge", {
             title:title,
             description:description
         }).then((response) => {
@@ -30,7 +30,7 @@ const AdminPage = () => {
     } 
 
     const getAllUsers = () => {
-        _get("https://localhost:44335/api/User/Get_All_Users").then((response) => {
+        _get("https://localhost:44335/api/User/GetAllUsers").then((response) => {
             if (response) {
                 console.log("users-response: " , response);
                 setUsersList(response.data);
@@ -41,7 +41,7 @@ const AdminPage = () => {
     }
 
     const handleDelete = (arg) => {
-        _delete(`https://localhost:44335/api/User/Delete_User_By_${arg}`).then((response) => {
+        _delete(`https://localhost:44335/api/User/DeleteUserBy${arg}`).then((response) => {
                 if("delete-user-response", response){
                     getAllUsers();
                 }
