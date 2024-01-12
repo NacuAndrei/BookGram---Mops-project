@@ -16,7 +16,7 @@ namespace Proiect1.Controllers
         }
 
         //get all reviews
-        [HttpGet("Get_All_Reviews")]
+        [HttpGet("GetAllReviews")]
         public async Task<IActionResult> GetAllReviews()
         {
             var reviews = manager.GetAllReviews();
@@ -24,7 +24,7 @@ namespace Proiect1.Controllers
         }
 
         // get the reviews made by a specific user
-        [HttpGet("Get_Reviews_By_User_id/{id}")]
+        [HttpGet("GetReviewsByUser/{id}")]
         public async Task<IActionResult> GetUserReviews([FromRoute] int id)
         {
 
@@ -35,7 +35,7 @@ namespace Proiect1.Controllers
         }
 
         //get all the reviews for a specific book
-        [HttpGet("Get_Reviews_By_bookname/{bookName}")]
+        [HttpGet("GetReviewsByBookname/{bookName}")]
         public async Task<IActionResult> GetBookReviews([FromRoute] string bookName)
         {
 
@@ -46,7 +46,7 @@ namespace Proiect1.Controllers
         }
 
         //make a review (user)
-        [HttpPost("Create_Review")]
+        [HttpPost("CreateReview")]
         public async Task<IActionResult> CreateReview([FromBody] ReviewModel reviewModel)
         {
 
@@ -55,7 +55,7 @@ namespace Proiect1.Controllers
         }
 
         //edit a review with a given id (user)
-        [HttpPut("Update_Review_By_{id}")]
+        [HttpPut("UpdateReviewBy{id}")]
         public async Task<IActionResult> UpdateChallenge([FromBody] ReviewModel reviewModel)
         {
             manager.UpdateReview(reviewModel);
@@ -63,7 +63,7 @@ namespace Proiect1.Controllers
         }
 
         //delete a review with a given id (user)
-        [HttpDelete("Delete_Review_By_{id}_User")]
+        [HttpDelete("DeleteReviewBy{id}User")]
         public async Task<IActionResult> DeleteReview([FromRoute] int id)
         {
             manager.DeleteReview(id);
@@ -71,7 +71,7 @@ namespace Proiect1.Controllers
         }
 
         //delete a review with a given id (admin)
-        [HttpDelete("Delete_Review_By_{id}_Admin")]
+        [HttpDelete("DeleteReviewBy{id}Admin")]
         // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteReviewAdmin([FromRoute] int id)
         {
@@ -79,7 +79,7 @@ namespace Proiect1.Controllers
             return Ok();
         }
 
-        [HttpGet("Get_Reviews_of_User's{id}_Friends")]
+        [HttpGet("GetReviewsofUser's{id}Friends")]
         public async Task<IActionResult> GetReviewsofFriends([FromRoute] int id)
         {
             var reviews = manager.GetReviewsofFriends(id);

@@ -50,7 +50,7 @@ export default function Profile() {
 
   // prietenii userului
   const getFriendships = () => {
-    _get("https://localhost:44335/api/Friendship/Get_All_Friendships").then(
+    _get("https://localhost:44335/api/Friendships/GetAllFriendships").then(
       (friendships) => {
         console.log("date: " , friendships.data);
         setFriendshipsList(friendships.data);
@@ -61,7 +61,7 @@ export default function Profile() {
 
   // postarile unui user 
   const getPosts = async () => {
-    await (_get(`https://localhost:44335/api/Post/Select_all_user${token.nameid}_posts`).then(
+    await (_get(`https://localhost:44335/api/Posts/GetAllUser${token.nameid}Posts`).then(
       (posts) => {
         console.log(posts);
         setPostsList(posts.data);
@@ -72,7 +72,7 @@ export default function Profile() {
 
   // review-urile user-ului
   const getReviews = async () => {
-    await (_get(`https://localhost:44335/api/Review/Get_Reviews_By_User_id/${token.nameid}`).then(
+    await (_get(`https://localhost:44335/api/Reviews/GetReviewsByUser/${token.nameid}`).then(
       (reviews) => {
         console.log(reviews);
         setReviewsList(reviews.data);

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Proiect1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Friendships")]
     [ApiController]
     public class FriendshipController : ControllerBase
     {
@@ -15,21 +15,21 @@ namespace Proiect1.Controllers
             this.manager = friendshipManager;
         }
 
-        [HttpPost("Add_Friendship")]
+        [HttpPost("CreateFriendship")]
         public async Task<IActionResult> AddFriendship([FromBody] FriendshipModel friendshipModel)
         {
             manager.AddFriendship(friendshipModel);
             return Ok();
         }
 
-        [HttpGet("Get_All_Friendships")]
+        [HttpGet("GetAllFriendships")]
         public async Task<IActionResult> GetAllFriendships()
         {
             var friendships = manager.GetAllFriendships();
             return Ok(friendships);
         }
 
-        [HttpDelete("Delete_Friendship_By_{id}")]
+        [HttpDelete("DeleteFriendshipBy{id}")]
         public async Task<IActionResult> DeleteFriendship([FromRoute] int id)
         {
             manager.DeleteFriendship(id);
