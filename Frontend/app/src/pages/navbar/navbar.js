@@ -33,6 +33,9 @@ export default function Navbar() {
         <div className={navStyles.title}>
           <button id="logout-button" className={navStyles.buttonn} onClick={handleLogOut}>Logout</button>
         </div>
+        <div >
+          <h1>BOOKGRAM</h1>
+        </div>
         <div className={navStyles.navbarlinks}>
           <ul>
             <li>

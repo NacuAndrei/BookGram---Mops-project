@@ -17,7 +17,7 @@ const AdminPage = () => {
         
         e.preventDefault();
 
-        _post("https://localhost:44335/api/Challenge/CreateChallenge", {
+        _post("https://localhost:44335/api/Challenges/CreateChallenge", {
             title:title,
             description:description
         }).then((response) => {
