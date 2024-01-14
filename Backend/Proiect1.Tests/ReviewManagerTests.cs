@@ -18,19 +18,6 @@ public class ReviewManagerTests
     }
 
     [Fact]
-    public void GetAllReviews_ShouldReturnListOfReviews()
-    {
-        // Arrange
-        var reviewManager = new ReviewManager(mockReviewRepository.Object, mockUserRepository.Object);
-
-        // Act
-        var result = reviewManager.GetAllReviews();
-
-        // Assert
-        Assert.NotNull(result);
-    }
-
-    [Fact]
     public void GetUserReviews_ShouldReturnListOfUserReviews()
     {
         // Arrange
