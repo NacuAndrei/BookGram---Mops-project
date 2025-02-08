@@ -12,17 +12,14 @@ namespace Proiect1.BLL.Managers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ITokenHelper _tokenHelper;
-        private readonly IUserManager _manager;
 
         public AuthManager(UserManager<User> userManager,
             SignInManager<User> signInManager,
-            IUserManager manager,
             ITokenHelper tokenHelper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenHelper = tokenHelper;
-            this._manager = manager;
         }
 
         public async Task<LoginResult> Login(LoginModel loginModel)
@@ -72,12 +69,12 @@ namespace Proiect1.BLL.Managers
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, registerModel.Role);
-                var receiver = new EmailReceiverDTO
-                {
-                    Email = registerModel.Email,
-                    Name = registerModel.Name
-                };
-                await _manager.SendEmailTemplate(receiver);
+                //var receiver = new EmailReceiverDTO
+                //{
+                //    Email = registerModel.Email,
+                //    Name = registerModel.Name
+                //};
+                //await _manager.SendEmailTemplate(receiver);
                 return true;
             }
             else

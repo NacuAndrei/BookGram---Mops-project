@@ -74,3 +74,15 @@ export const handleError = (err) => {
       throw err;
   }
 };
+
+export const postSummary = async (url,title) => {
+  try {
+    return await instance({
+      method: httpMethods.POST,
+      url: url,
+      data: {title}
+    })
+  }catch(e){
+    handleError(e)
+  }
+}

@@ -33,7 +33,7 @@ namespace Proiect1.BLL.Repositories
         public IQueryable<Book> GetBooksRecommendationsIQueryable() 
         {
             var books = db.Books.OrderByDescending(x => x.PublishDate);
-            return books.Take(2);
+            return books;
         }
 
         public Book GetBook(string title)

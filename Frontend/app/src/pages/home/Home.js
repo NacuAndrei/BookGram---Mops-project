@@ -45,6 +45,7 @@ const Home = () => {
             <div>
                 <Navbar></Navbar>
                 <div className="container">
+                    <div className="container-subtitle">
                     <div className="image"> <Reading /> </div>
                     <div className="description">
                         <h1 className="descriptionTitle">Deciding what to read next?</h1>
@@ -54,7 +55,7 @@ const Home = () => {
     Tell us what titles or genres you’ve enjoyed in the past, and we’ll give you surprisingly insightful recommendations. Reading is fun again! Bookgram means reading adventures that are always right on the nose. Get inspired with your friends to like books you never thought you would!
                         </h3>
                     </div>
-                
+                    </div>
                 <div className="challenges">
                 <div className="challengeTitle" >⚡ Our weekly challenge ⚡</div>
                 <div className="challengeContent">{challenge}</div>
